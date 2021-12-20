@@ -1,5 +1,5 @@
 import { Link, LoaderFunction, useLoaderData } from "remix";
-import { getTrending, getImageUrl } from "../utils/tmdb.helper";
+import { getTrending, getImageUrl } from "../utils/api";
 
 export const loader: LoaderFunction = async () => {
   const data = await getTrending();

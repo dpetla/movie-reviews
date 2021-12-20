@@ -1,14 +1,20 @@
 import { LoaderFunction, useLoaderData } from "remix";
-import { getMediaByType, getImageUrl } from "../../utils/tmdb.helper";
+import { getMediaByType, getImageUrl, getRatings } from "../../utils/api";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const movie = await getMediaByType("movie", params.id);
-  return movie;
+
+  let ratings = {};
+  if (movie.imdb_id) {
+    ratings = await getRatings(movie.imdb_id);
+  }
+
+  return { movie, ratings };
 };
 
 function Movie() {
-  const movie = useLoaderData();
-  console.log("@@@@", movie);
+  const { movie, ratings } = useLoaderData();
+  // console.log("##", { movie, ratings });
   return (
     <div>
       <img
