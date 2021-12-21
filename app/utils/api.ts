@@ -1,3 +1,7 @@
+import { MediaType } from "~/types/media.types";
+import { MovieResponse } from "~/types/movie.types";
+import { TvResponse } from "~/types/tv.types";
+
 async function get(url: string) {
   const res = await fetch(url);
   const data = await res.json();
@@ -15,7 +19,10 @@ export async function getTrending() {
   return get(url);
 }
 
-export async function getMediaByType(mediaType: string, id: string = "") {
+export async function getMediaByType<T extends MediaType>(
+  mediaType: T,
+  id: string = ""
+): Promise<T extends "movie" ? MovieResponse : TvResponse> {
   const url = `${baseUrl}/${mediaType}/${id}?api_key=${process.env.TMDB_API_KEY}`;
   return get(url);
 }
