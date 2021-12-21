@@ -20,11 +20,6 @@ export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Movies Reviews</h1>
-      <ul>
-        <li>
-          <Link to="/movie">Movie</Link>
-        </li>
-      </ul>
       <div className="trending-container">
         {trending.map((media: any) => (
           <Link to={`${media.media_type}/${media.id}`} key={media.id}>
