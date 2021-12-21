@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async () => {
 export default function Index() {
   const { trending } = useLoaderData();
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+    <div>
       <h1>Movies Reviews</h1>
       <div className="trending-container">
         {trending.map((media: any) => (
